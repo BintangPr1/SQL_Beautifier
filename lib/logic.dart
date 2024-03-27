@@ -12,12 +12,10 @@ List<String> returnTableName2(String input) {
   List<String> statements = input.split(';');
 
   for (String statement in statements) {
-    int startIndex = statement.toLowerCase().indexOf('create table');
-    if (startIndex != -1) {
+    if (statement.trim().isNotEmpty) {
       int endIndex = statement.indexOf('(');
       if (endIndex != -1) {
-        String tableName = statement.substring(startIndex, endIndex).trim();
-
+        String tableName = statement.substring(0, endIndex).trim();
         tableName = capitalizeFirstTwoWords(tableName);
         tableStatements.add(tableName);
       }
